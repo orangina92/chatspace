@@ -19,33 +19,7 @@
         .right-header__button
           Edit
     .messages
-      .message
-        .upper-message
-          .upper-message__user-name
-            メンバー
-          .upper-message__date
-            2000/00/00
-        .lower-meesage
-          .lower-message__content
-            メッセージ
-      .message
-        .upper-message
-          .upper-message__user-name
-            メンバー
-          .upper-message__date
-            2000/00/00
-        .lower-meesage
-          .lower-message__content
-            メッセージ
-      .message
-        .upper-message
-          .upper-message__user-name
-            メンバー
-          .upper-message__date
-            2000/00/00
-        .lower-meesage
-          .lower-message__content
-            メッセージ
+      = render partial: 'message', collection: @messages
     .form
       %form
         %input.form__message
