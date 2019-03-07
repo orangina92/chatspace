@@ -1,5 +1,5 @@
 $(function() {
-  function buildHTML(message){
+  function buildSendMessageHTML(message){
     var insertImage = '';
     if (message.image_url) {
       insertImage = `<img src="${message.image_url}">`;
@@ -35,7 +35,7 @@ $(function() {
       contentType: false
     })
 
-    .done(function(data) {
+    .done(function(sendMessageData) {
       var html = buildHTML(data);
       $('.messages').append(html);
       $('#new_message')[0].reset();
