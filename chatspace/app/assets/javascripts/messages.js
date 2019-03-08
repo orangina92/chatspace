@@ -5,20 +5,20 @@ $(function() {
       insertImage = `<img src="${message.image_url}">`;
     }
     var html = `<div class='message' data-id="${message.id}">
-    <div class="upper-message">
-    <div class='upper-message__user-name'>
-    ${message.name}
-    </div>
-    <div class='upper-message__date'>
-    ${message.created_at}
-    </div>
-    </div>
-    <div class='lower-message'>
-    ${message.content}
-    </div>
-    ${insertImage}
-    </div>
-    </div>`;
+                  <div class="upper-message">
+                    <div class='upper-message__user-name'>
+                      ${message.name}
+                    </div>
+                    <div class='upper-message__date'>
+                      ${message.created_at}
+                    </div>
+                  </div>
+                  <div class='lower-message'>
+                    ${message.content}
+                      </div>
+                    ${insertImage}
+                  </div>
+                </div>`;
     return html;
   }
 
