@@ -5,20 +5,20 @@ $(function() {
       insertImage = `<img src="${message.image_url}">`;
     }
     var html = `<div class='message' data-id="${message.id}">
-                  <div class="upper-message">
-                    <div class='upper-message__user-name'>
-                      ${message.name}
-                    </div>
-                    <div class='upper-message__date'>
-                      ${message.created_at}
-                    </div>
-                  </div>
-                  <div class='lower-message'>
-                    ${message.content}
-                      </div>
-                    ${insertImage}
-                  </div>
-                </div>`;
+    <div class="upper-message">
+    <div class='upper-message__user-name'>
+    ${message.name}
+    </div>
+    <div class='upper-message__date'>
+    ${message.created_at}
+    </div>
+    </div>
+    <div class='lower-message'>
+    ${message.content}
+    </div>
+    ${insertImage}
+    </div>
+    </div>`;
     return html;
   }
 
@@ -49,6 +49,33 @@ $(function() {
   function scroll() {
     $('.chat-body').animate({scrollTop: $('.chat-body')[0].scrollHeight}, 'fast');
   }
+
+  var interval = setInterval(function() {
+    if (window.location.href.match(/\/groups\/\d+\/messages/)) {
+      $.ajax({
+        url: location.href.json,
+        type: 'GET',
+        dataType: 'json'
+      })
+
+      .done(function(json) {
+        var last_message_id = $('.chat-body:last').data('id');
+        var insertHTML = '';
+        json.messages.forEach(function(message) {
+          if (message.id > last_message_id ) {
+            insertHTML += buildHTML(message);
+          }
+        });
+        $('.main-content__chat-contents').append(insertHTML);
+        scroll()
+      })
+
+      .fail(function(json) {
+        alert('自動更新に失敗しました');
+      });
+    } else {
+      clearInterval(interval);
+    }} , 5 * 1000 );
 
 });
 
