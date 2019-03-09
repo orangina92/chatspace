@@ -58,19 +58,19 @@ $(function() {
         dataType: 'json'
       })
 
-      .done(function(json) {
+      .done(function(SendMessageData) {
         var last_message_id = $('.chat-body:last').data('id');
         var insertHTML = '';
         json.messages.forEach(function(message) {
           if (message.id > last_message_id ) {
-            insertHTML += buildHTML(message);
+            insertHTML += buildSendMessageHTML(message);
           }
         });
         $('.main-content__chat-contents').append(insertHTML);
         scroll()
       })
 
-      .fail(function(json) {
+      .fail(function(SendMessageData) {
         alert('自動更新に失敗しました');
       });
     } else {
