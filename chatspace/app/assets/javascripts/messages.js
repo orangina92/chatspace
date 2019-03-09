@@ -69,10 +69,6 @@ $(function() {
         $('.main-content__chat-contents').append(insertHTML);
         scroll()
       })
-
-      .fail(function(SendMessage) {
-        alert('自動更新に失敗しました');
-      });
     } else {
       clearInterval(interval);
     }} , 5 * 1000 );
