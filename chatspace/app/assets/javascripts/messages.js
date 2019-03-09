@@ -37,9 +37,9 @@ $(function() {
 
     .done(function(sendMessageData) {
       var html = buildHTML(data);
-      $('.messages').append(html);
+      $('.message').append(html);
       $('#new_message')[0].reset();
-      $('.messages').animate({scrollTop: $(".messages")[0].scrollHeight}, 1500);
+      $('.message').animate({scrollTop: $(".message")[0].scrollHeight}, 1500);
     })
     .fail(function(){
       alert('メッセージの送信に失敗しました');
@@ -47,7 +47,7 @@ $(function() {
   });
 
   function scroll() {
-    $('.chat-body').animate({scrollTop: $('.chat-body')[0].scrollHeight}, 'fast');
+    $('.message').animate({scrollTop: $('.message')[0].scrollHeight}, 'fast');
   }
 
   var interval = setInterval(function() {
@@ -58,10 +58,10 @@ $(function() {
         dataType: 'json'
       })
 
-      .done(function(SendMessageData) {
-        var last_message_id = $('.chat-body:last').data('id');
+      .done(function(SendMessage) {
+        var last_message_id = $('.message:last').data('id');
         var insertHTML = '';
-        json.messages.forEach(function(message) {
+        SendMessage.forEach(function(message) {
           if (message.id > last_message_id ) {
             insertHTML += buildSendMessageHTML(message);
           }
@@ -70,7 +70,7 @@ $(function() {
         scroll()
       })
 
-      .fail(function(SendMessageData) {
+      .fail(function(SendMessage) {
         alert('自動更新に失敗しました');
       });
     } else {
