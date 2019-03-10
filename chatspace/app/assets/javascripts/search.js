@@ -41,7 +41,7 @@ $("#user-search-field").on("keyup", function() {
   .done(function(members) {
    $("#user_search_result").empty();
    if (members.length !== 0) {
-     .forEach(function(user){
+     members.forEach(function(user){
        appendUsers(user);
      });
    }
