@@ -68,8 +68,8 @@ $(function(){
       dataType: 'json',
     })
     .always(function(sendMessage){
-      $.each(data, function(i, sendMessage){
-        var html = buildSendMessageHTML(data);
+      $.each(sendMessage, function(i, sendMessage){
+        var html = buildSendMessageHTML(sendMessage);
       $('.messages').append(html);
       });
     });
