@@ -51,9 +51,9 @@ $(function() {
   }
 
 $(function(){
-    setInterval(update, 5000);
+    setInterval(updateSendMessage, 5000);
   });
-  function update(){
+  function updateSendMessage(){
     if($('.messages')[0]){
       var message_id = $('.message:last').data('message-id');
     } else {
