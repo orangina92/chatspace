@@ -4,7 +4,7 @@ $(function() {
     if (message.image_url) {
       insertImage = `<img src="${message.image_url}">`;
     }
-    var html = `<div class='message' data-id="${message.id}">
+    var html = `<div class='message' data-message-id="${message.id}">
                   <div class="upper-message">
                     <div class='upper-message__user-name'>
                       ${message.name}
@@ -36,8 +36,8 @@ $(function() {
     })
 
     .done(function(sendMessageData) {
-      var html = buildHTML(data);
-      $('.message').append(html);
+      var html = buildSendMessageHTML(sendMessageData);
+      $('.messages').append(html);
       $('#new_message')[0].reset();
       $('.message').animate({scrollTop: $(".message")[0].scrollHeight}, 1500);
     })
@@ -50,28 +50,28 @@ $(function() {
     $('.message').animate({scrollTop: $('.message')[0].scrollHeight}, 'fast');
   }
 
-  var interval = setInterval(function() {
-    if (window.location.href.match(/\/groups\/\d+\/messages/)) {
-      $.ajax({
-        url: location.href.json,
-        type: 'GET',
-        dataType: 'json'
-      })
-
-      .done(function(SendMessage) {
-        var last_message_id = $('.message:last').data('id');
-        var insertHTML = '';
-        SendMessage.forEach(function(message) {
-          if (message.id > last_message_id ) {
-            insertHTML += buildSendMessageHTML(message);
-          }
-        });
-        $('.main-content__chat-contents').append(insertHTML);
-        scroll()
-      })
+$(function(){
+    setInterval(update, 5000);
+  });
+  function update(){
+    if($('.messages')[0]){
+      var message_id = $('.message:last').data('message-id');
     } else {
-      clearInterval(interval);
-    }} , 5 * 1000 );
-
+      var message_id = 0
+    }
+    $.ajax({
+      url: location.href,
+      type: 'GET',
+      data: {
+         message: { id: message_id }
+      },
+      dataType: 'json',
+    })
+    .always(function(sendMessage){
+      $.each(data, function(i, sendMessage){
+        var html = buildSendMessageHTML(data);
+      $('.messages').append(html);
+      });
+    });
+  }
 });
-
