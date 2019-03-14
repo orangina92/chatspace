@@ -9,6 +9,7 @@ pid "/var/www/chatspace/chatspace/shared/tmp/pids/unicorn.pid"
 stderr_path "/var/www/chatspace/chatspace/shared/log/unicorn.stderr.log"
 # stdout_path "#{app_path}/shared/log/unicorn.stdout.log"
 stdout_path "/var/www/chatspace/chatspace/shared/log/unicorn.stdout.log"
+releases_path "/var/www/chatspace/chatspace/releases"
 
 
 listen 3000
