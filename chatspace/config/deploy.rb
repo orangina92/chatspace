@@ -12,8 +12,17 @@ set :rbenv_ruby, '2.3.1'
 set :ssh_options, auth_methods: ['publickey'],
                   keys: ['~/.ssh/key.pem']
 
+# fixpath
 set :unicorn_pid, -> { "/var/www/chatspace/chatspace/shared/tmp/pids/unicorn.pid" }
 set :unicorn_config_path, -> { "/var/www/chatspace/chatspace/current/config/unicorn.rb" }
+
+# addpath
+set :shared_path, -> { "/var/www/chatspace/chatspace/shared" }
+set :current_path, -> { "/var/www/chatspace/chatspace/current" }
+set :releases_path, -> { "/var/www/chatspace/chatspace/releases" }
+
+
+
 set :keep_releases, 5
 
 after 'deploy:publishing', 'deploy:restart'
