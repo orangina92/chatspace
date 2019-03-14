@@ -1,4 +1,5 @@
-app_path = File.expand_path('../../../../', __FILE__)
+# app_path = File.expand_path('../../../../', __FILE__)
+app_path = "/var/www/chatspace/chatspace"
 
 worker_processes 1
 
