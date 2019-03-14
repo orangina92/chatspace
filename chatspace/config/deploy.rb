@@ -5,7 +5,7 @@ set :application, 'chatspace'
 set :repo_url,  'git@github.com:orangina92/chatspace.git'
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
-
+set :deploy_to, "/var/www/chat-space/chat-space"
 set :rbenv_type, :user
 set :rbenv_ruby, '2.3.1'
 
@@ -36,7 +36,6 @@ end
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-# set :deploy_to, "/var/www/my_app_name"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
